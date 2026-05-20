@@ -1,0 +1,932 @@
+﻿<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terra — Skincare Natural y Consciente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ==============================
+   VARIABLES — LIGHT & DARK
+============================== */
+:root{
+  --bg:#FAF5EE;
+  --bg2:#F4EDE0;
+  --surface:#FFFFFF;
+  --bark:#3D2B1A;
+  --bark2:#5A3E28;
+  --dusk:#8B6E5A;
+  --sand:#E8D5B7;
+  --sand-light:#F2E8D5;
+  --clay:#C4724A;
+  --clay-dark:#A55A35;
+  --sage:#7A9B76;
+  --blush:#D4A5A0;
+  --slate:#5C7A8A;
+  --text-main:#3D2B1A;
+  --text-soft:rgba(61,43,26,.6);
+  --text-softer:rgba(61,43,26,.38);
+  --border:rgba(61,43,26,.1);
+  --border2:rgba(61,43,26,.18);
+  --card-bg:#FFFFFF;
+  --strip-bg:#F0EAE0;
+  --nav-bg:rgba(250,245,238,.96);
+  --mob-bg:#FAF5EE;
+  --feat-sand:#E8D5B7;
+  --feat-sage:#BAD1A8;
+  --feat-blush:#D4A5A0;
+  --feat-slate:#A8C5D5;
+  --testi-bg:#F4EDE0;
+  --contact-bg:#D4A5A0;
+  --footer-bg:#3D2B1A;
+  --footer-text:rgba(250,245,238,.38);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --font-d:'Anton',sans-serif;
+  --font-s:'Fraunces',serif;
+  --font-b:'DM Sans',sans-serif;
+}
+[data-theme="dark"]{
+  --bg:#0F0C09;
+  --bg2:#170F09;
+  --surface:#1C1410;
+  --bark:#F2E8D5;
+  --bark2:#D4B896;
+  --dusk:#A88A78;
+  --sand:#3D2B1A;
+  --sand-light:#2A1E12;
+  --text-main:#F2E8D5;
+  --text-soft:rgba(242,232,213,.58);
+  --text-softer:rgba(242,232,213,.3);
+  --border:rgba(242,232,213,.1);
+  --border2:rgba(242,232,213,.18);
+  --card-bg:#1C1410;
+  --strip-bg:#1A1208;
+  --nav-bg:rgba(15,12,9,.96);
+  --mob-bg:#0F0C09;
+  --feat-sand:#2A1E12;
+  --feat-sage:#1A2818;
+  --feat-blush:#2A1518;
+  --feat-slate:#0E1E28;
+  --testi-bg:#150F08;
+  --contact-bg:#1C1410;
+  --footer-bg:#080604;
+  --footer-text:rgba(242,232,213,.3);
+}
+
+/* ==============================
+   RESET
+============================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--font-b);
+  background:var(--bg);
+  color:var(--text-main);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  transition:background .4s,color .4s;
+}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ==============================
+   DARK MODE TOGGLE
+============================== */
+.theme-toggle{
+  width:42px;height:42px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  border:1.5px solid var(--border2);
+  background:var(--surface);
+  transition:background .3s,border-color .3s,transform .2s;
+  flex-shrink:0;
+}
+.theme-toggle:hover{transform:scale(1.08);border-color:var(--clay)}
+.theme-toggle svg{
+  width:18px;height:18px;
+  fill:none;stroke:var(--text-main);stroke-width:1.8;stroke-linecap:round;
+  transition:stroke .3s;
+}
+.icon-sun{display:block}
+.icon-moon{display:none}
+[data-theme="dark"] .icon-sun{display:none}
+[data-theme="dark"] .icon-moon{display:block}
+
+/* ==============================
+   NAV
+============================== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  height:68px;padding:0 5vw;
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--nav-bg);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1.5px solid var(--border);
+  transition:background .4s,border-color .4s,box-shadow .4s;
+}
+.nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.08)}
+.nav-brand{display:flex;align-items:center;gap:12px}
+.nav-logomark{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--clay);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:background .3s,transform .3s;
+}
+.nav-logomark:hover{background:var(--clay-dark);transform:rotate(-8deg)}
+.nav-logomark svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round}
+.nav-name{
+  font-family:var(--font-d);font-size:1.65rem;
+  letter-spacing:.06em;color:var(--text-main);
+  transition:color .4s;
+}
+.nav-links{display:flex;gap:2.5rem;align-items:center}
+.nav-links a{
+  font-size:.78rem;font-weight:500;
+  color:var(--text-soft);letter-spacing:.12em;text-transform:uppercase;
+  transition:color .25s;position:relative;padding-bottom:2px;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1.5px;
+  background:var(--clay);transform:scaleX(0);transform-origin:left;
+  transition:transform .3s var(--ease);
+}
+.nav-links a:hover{color:var(--text-main)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-right{display:flex;align-items:center;gap:.8rem}
+.btn-nav{
+  background:var(--clay);color:#fff;
+  padding:.5rem 1.4rem;
+  font-size:.76rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  transition:background .3s,transform .2s;
+}
+.btn-nav:hover{background:var(--clay-dark);transform:translateY(-1px)}
+/* Hamburger */
+.nav-hamburger{
+  display:none;flex-direction:column;gap:5px;padding:6px;
+}
+.nav-hamburger span{
+  display:block;width:22px;height:2px;
+  background:var(--text-main);
+  transition:transform .35s var(--ease),opacity .25s,background .4s;
+}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+/* Mobile menu */
+.mob-menu{
+  position:fixed;inset:0;z-index:490;
+  background:var(--mob-bg);
+  display:flex;flex-direction:column;
+  padding:90px 8vw 4rem;
+  transform:translateY(-102%);
+  transition:transform .5s var(--ease),background .4s;
+}
+.mob-menu.open{transform:translateY(0)}
+.mob-menu a{
+  font-family:var(--font-d);font-size:3rem;
+  color:var(--text-main);letter-spacing:.04em;
+  padding:.6rem 0;border-bottom:1.5px solid var(--border);
+  transform:translateX(-20px);opacity:0;
+  transition:color .25s,transform .45s var(--ease),opacity .4s,border-color .4s;
+}
+.mob-menu.open a{transform:translateX(0);opacity:1}
+.mob-menu.open a:nth-child(1){transition-delay:.06s}
+.mob-menu.open a:nth-child(2){transition-delay:.12s}
+.mob-menu.open a:nth-child(3){transition-delay:.18s}
+.mob-menu.open a:nth-child(4){transition-delay:.24s}
+.mob-menu a:hover{color:var(--clay)}
+.mob-cta{
+  margin-top:1.5rem;
+  background:var(--clay) !important;color:#fff !important;
+  display:inline-block;padding:.7rem 2rem !important;
+  font-family:var(--font-b) !important;font-size:.85rem !important;
+  font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  width:fit-content;border:none !important;
+  transform:translateY(12px) !important;opacity:0 !important;
+  transition:background .3s,transform .4s .32s var(--ease),opacity .4s .32s !important;
+}
+.mob-menu.open .mob-cta{transform:translateY(0) !important;opacity:1 !important}
+.mob-cta:hover{background:var(--clay-dark) !important}
+
+/* ==============================
+   HERO
+============================== */
+.hero{
+  min-height:100svh;padding:110px 5vw 5rem;
+  background:var(--bg2);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;position:relative;overflow:hidden;
+  transition:background .4s;
+}
+.hero-glow{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 65% 50% at 15% 90%,rgba(196,114,74,.14) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 60% at 85% 10%,rgba(122,155,118,.1) 0%,transparent 60%);
+  transition:opacity .4s;
+}
+.hero-eyebrow{
+  font-family:var(--font-s);font-style:italic;
+  font-size:1rem;color:var(--clay);letter-spacing:.04em;
+  margin-bottom:1rem;position:relative;z-index:1;
+  opacity:0;animation:fadeDown .8s .1s var(--ease) forwards;
+}
+.hero-headline{
+  font-family:var(--font-d);
+  font-size:clamp(4.5rem,13vw,10rem);
+  color:var(--text-main);line-height:.88;letter-spacing:.03em;
+  margin-bottom:1.5rem;position:relative;z-index:1;
+  opacity:0;animation:fadeDown .9s .25s var(--ease) forwards;
+  transition:color .4s;
+}
+.hero-sub-row{
+  display:flex;align-items:center;justify-content:center;
+  flex-wrap:wrap;gap:.75rem;margin-bottom:3.5rem;
+  position:relative;z-index:1;
+  opacity:0;animation:fadeDown .8s .45s var(--ease) forwards;
+}
+.hero-badge{
+  border:2px solid var(--border2);
+  padding:.55rem 1.5rem;
+  font-size:.78rem;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-main);transition:border-color .4s,color .4s;
+}
+.hero-cta{
+  background:var(--clay);color:#fff;
+  padding:.6rem 2rem;font-size:.8rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:.5rem;
+  position:relative;overflow:hidden;transition:background .3s;
+}
+.hero-cta::before{
+  content:'';position:absolute;inset:0;background:var(--clay-dark);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s var(--ease);
+}
+.hero-cta:hover::before{transform:scaleX(1)}
+.hero-cta span,.hero-cta svg{position:relative;z-index:1}
+.hero-cta svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2;transition:transform .3s}
+.hero-cta:hover svg{transform:translateX(4px)}
+
+/* Product showcase */
+.hero-showcase{
+  display:flex;align-items:flex-end;justify-content:center;
+  gap:clamp(12px,2.5vw,36px);
+  width:100%;max-width:920px;
+  position:relative;z-index:1;
+  opacity:0;animation:fadeUp 1s .65s var(--ease) forwards;
+}
+.hero-deco{
+  position:absolute;bottom:0;
+  width:clamp(80px,10vw,150px);
+  filter:drop-shadow(0 14px 24px rgba(0,0,0,.18));
+  pointer-events:none;object-fit:cover;
+}
+.hero-deco.left{left:0}
+.hero-deco.right{right:0}
+.prod-card{display:flex;flex-direction:column;align-items:center;gap:.6rem}
+.prod-jar{
+  width:clamp(90px,11vw,148px);
+  height:clamp(115px,14vw,190px);
+  border-radius:20px 20px 28px 28px;
+  overflow:hidden;position:relative;
+  box-shadow:0 10px 36px rgba(0,0,0,.18);
+  transition:transform .55s var(--ease),box-shadow .55s var(--ease);
+  background:var(--sand);
+}
+.prod-jar img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s var(--ease);
+  background:var(--sand);
+}
+.prod-jar::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.22) 100%);
+  pointer-events:none;
+}
+.prod-jar:hover{transform:translateY(-18px) scale(1.05);box-shadow:0 28px 60px rgba(0,0,0,.25)}
+.prod-jar:hover img{transform:scale(1.1)}
+.prod-label{font-family:var(--font-d);font-size:.9rem;color:var(--dusk);letter-spacing:.08em}
+
+/* ==============================
+   FEATURE SECTIONS
+============================== */
+.feature{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:500px;overflow:hidden;
+}
+.feature.flip{direction:rtl}
+.feature.flip>*{direction:ltr}
+.feat-img-wrap{position:relative;overflow:hidden;min-height:400px;background:var(--sand)}
+.feat-img-wrap img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;transition:transform .9s var(--ease);
+  background:var(--sand);
+}
+.feat-img-wrap:hover img{transform:scale(1.07)}
+.feat-content{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:5rem 7vw 5rem 6vw;
+  transition:background .4s;
+}
+.c-sand{background:var(--feat-sand)}
+.c-sage{background:var(--feat-sage)}
+.c-blush{background:var(--feat-blush)}
+.c-slate{background:var(--feat-slate)}
+.feat-tag{
+  font-family:var(--font-s);font-style:italic;
+  font-size:.82rem;color:var(--clay);
+  letter-spacing:.06em;margin-bottom:.75rem;
+}
+.feat-title{
+  font-family:var(--font-d);
+  font-size:clamp(2.4rem,4.8vw,4.2rem);
+  color:var(--text-main);line-height:.92;
+  letter-spacing:.03em;margin-bottom:1.3rem;
+  transition:color .4s;
+}
+.feat-desc{
+  font-size:.88rem;line-height:1.82;
+  color:var(--text-soft);max-width:370px;margin-bottom:2.2rem;
+  transition:color .4s;
+}
+.feat-btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--clay);color:#fff;
+  padding:.6rem 1.9rem;
+  font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  width:fit-content;position:relative;overflow:hidden;transition:background .3s;
+}
+.feat-btn::before{
+  content:'';position:absolute;inset:0;background:var(--clay-dark);
+  transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease);
+}
+.feat-btn:hover::before{transform:scaleX(1)}
+.feat-btn span,.feat-btn svg{position:relative;z-index:1}
+.feat-btn svg{width:13px;height:13px;fill:none;stroke:#fff;stroke-width:2;transition:transform .3s}
+.feat-btn:hover svg{transform:translateX(4px)}
+
+/* ==============================
+   STRIP
+============================== */
+.strip{
+  background:var(--strip-bg);
+  border-top:1.5px solid var(--border);
+  border-bottom:1.5px solid var(--border);
+  padding:2.8rem 5vw;
+  display:flex;align-items:center;justify-content:center;
+  flex-wrap:wrap;gap:1.2rem;
+  transition:background .4s,border-color .4s;
+}
+.strip-item{
+  font-family:var(--font-d);font-size:.9rem;
+  letter-spacing:.1em;color:#fff;
+  padding:.58rem 2rem;
+  clip-path:polygon(14px 0%,100% 0%,calc(100% - 14px) 100%,0% 100%);
+  transition:transform .3s var(--ease),filter .3s;
+}
+.strip-item:hover{transform:translateY(-3px);filter:brightness(1.1)}
+.si1{background:var(--clay)}
+.si2{background:var(--sage)}
+.si3{background:var(--slate)}
+
+/* ==============================
+   TESTIMONIOS
+============================== */
+.testimonials{
+  background:var(--testi-bg);
+  padding:7rem 5vw;text-align:center;
+  transition:background .4s;
+}
+.section-eyebrow{
+  font-family:var(--font-s);font-style:italic;
+  font-size:.9rem;color:var(--clay);letter-spacing:.05em;
+  margin-bottom:.5rem;display:block;
+}
+.section-title{
+  font-family:var(--font-d);
+  font-size:clamp(2rem,4vw,3.5rem);
+  color:var(--text-main);letter-spacing:.05em;
+  transition:color .4s;
+}
+.section-divider{
+  width:48px;height:2px;background:var(--clay);
+  margin:.8rem auto 3rem;
+}
+.testi-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1.5rem;max-width:1000px;margin:0 auto;
+}
+.testi-card{
+  background:var(--card-bg);padding:2rem 1.8rem;
+  border:1.5px solid var(--border);
+  transition:transform .35s var(--ease),box-shadow .35s,background .4s,border-color .4s;
+  text-align:left;
+}
+.testi-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,.1)}
+.testi-stars{display:flex;gap:3px;margin-bottom:1rem}
+.testi-stars span{
+  width:14px;height:14px;background:var(--clay);
+  clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  display:block;
+}
+.testi-text{
+  font-family:var(--font-s);font-style:italic;
+  font-size:1rem;line-height:1.72;
+  color:var(--text-main);margin-bottom:1.2rem;
+  transition:color .4s;
+}
+.testi-author{
+  font-size:.76rem;font-weight:600;
+  color:var(--dusk);letter-spacing:.08em;text-transform:uppercase;
+}
+
+/* ==============================
+   CONTACTO
+============================== */
+.contact-section{
+  background:var(--contact-bg);
+  padding:6rem 5vw 5rem;
+  transition:background .4s;
+}
+.contact-header{text-align:center;margin-bottom:3.5rem}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:3rem;max-width:1100px;margin:0 auto;
+  align-items:start;
+}
+.contact-col-title{
+  font-family:var(--font-d);
+  font-size:1.2rem;letter-spacing:.1em;
+  color:var(--text-main);margin-bottom:1.2rem;
+  transition:color .4s;
+}
+.social-links{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.2rem}
+.social-link{
+  font-size:.8rem;font-weight:600;
+  color:var(--text-main);
+  border-bottom:1.5px solid var(--border2);
+  padding-bottom:2px;letter-spacing:.06em;
+  transition:border-color .25s,color .25s;
+}
+.social-link:hover{border-color:var(--clay);color:var(--clay)}
+.contact-info-list{display:flex;flex-direction:column;gap:.8rem}
+.contact-info-item{
+  display:flex;align-items:flex-start;gap:.65rem;
+  font-size:.85rem;color:var(--text-soft);line-height:1.5;
+  transition:color .4s;
+}
+.contact-info-item svg{
+  width:16px;height:16px;flex-shrink:0;margin-top:2px;
+  fill:none;stroke:var(--clay);stroke-width:1.8;stroke-linecap:round;
+}
+.contact-info-item strong{color:var(--text-main)}
+.contact-info-item a{color:var(--text-main);font-weight:500;transition:color .25s}
+.contact-info-item a:hover{color:var(--clay)}
+.nav-links-col{display:flex;flex-direction:column;gap:.5rem}
+.nav-links-col a{
+  font-size:.84rem;color:var(--text-soft);
+  transition:color .25s;letter-spacing:.03em;
+}
+.nav-links-col a:hover{color:var(--text-main)}
+/* Form */
+.contact-form{display:flex;flex-direction:column;gap:.7rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.f-field{
+  width:100%;background:transparent;
+  border:none;border-bottom:1.5px solid var(--border2);
+  padding:.62rem 0;
+  font-family:var(--font-b);font-size:.86rem;
+  color:var(--text-main);outline:none;
+  transition:border-color .3s,color .4s;
+}
+.f-field::placeholder{color:var(--text-softer)}
+.f-field:focus{border-bottom-color:var(--clay)}
+.f-textarea{
+  width:100%;
+  border:1.5px solid var(--border);
+  background:rgba(0,0,0,.04);
+  padding:.7rem .9rem;
+  font-family:var(--font-b);font-size:.86rem;
+  color:var(--text-main);outline:none;resize:vertical;min-height:100px;
+  transition:border-color .3s,color .4s,background .4s;
+}
+[data-theme="dark"] .f-textarea{background:rgba(255,255,255,.05)}
+.f-textarea::placeholder{color:var(--text-softer)}
+.f-textarea:focus{border-color:var(--clay)}
+.f-submit{
+  background:var(--clay);color:#fff;
+  padding:.65rem 2rem;
+  font-family:var(--font-b);font-size:.82rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  width:fit-content;position:relative;overflow:hidden;transition:background .3s;
+}
+.f-submit::before{
+  content:'';position:absolute;inset:0;background:var(--clay-dark);
+  transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease);
+}
+.f-submit:hover::before{transform:scaleX(1)}
+.f-submit:disabled{opacity:.6;cursor:not-allowed}
+.f-submit span{position:relative;z-index:1}
+.f-msg{
+  display:none;padding:.8rem 1.2rem;
+  border-left:3px solid var(--clay);
+  font-size:.82rem;color:var(--text-main);
+  background:rgba(196,114,74,.08);
+  transition:color .4s;
+}
+.f-msg.visible{display:block}
+.f-msg.ok{border-left-color:var(--sage);background:rgba(122,155,118,.1)}
+
+/* Footer */
+.footer-bar{
+  background:var(--footer-bg);
+  padding:1.8rem 5vw;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:.8rem;
+  transition:background .4s;
+}
+.footer-bar p{font-size:.72rem;color:var(--footer-text);letter-spacing:.06em}
+.back-top{
+  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(250,245,238,.4);
+  transition:color .25s;display:flex;align-items:center;gap:.4rem;
+}
+.back-top:hover{color:var(--sand)}
+.back-top svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2}
+
+/* ==============================
+   SCROLL REVEAL
+============================== */
+.rv{
+  opacity:0;
+  transition:opacity .8s var(--ease),transform .8s var(--ease);
+  will-change:opacity,transform;
+}
+.rv-up{transform:translateY(40px)}
+.rv-left{transform:translateX(-48px)}
+.rv-right{transform:translateX(48px)}
+.rv.on{opacity:1;transform:translate(0,0)}
+.rv-d1{transition-delay:.1s}
+.rv-d2{transition-delay:.2s}
+.rv-d3{transition-delay:.3s}
+
+/* ==============================
+   KEYFRAMES
+============================== */
+@keyframes fadeDown{from{opacity:0;transform:translateY(-24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:translateY(0)}}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+@media(max-width:980px){
+  .nav-links,.btn-nav{display:none}
+  .nav-hamburger{display:flex}
+  .feature{grid-template-columns:1fr}
+  .feature.flip{direction:ltr}
+  .feat-img-wrap{min-height:320px}
+  .feat-content{padding:3.5rem 6vw}
+  .contact-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .hero-deco{display:none}
+  .contact-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .strip{gap:.8rem}
+  .testi-grid{grid-template-columns:1fr}
+}
+@media(max-width:440px){
+  .prod-jar{width:clamp(70px,19vw,100px);height:clamp(90px,24vw,128px)}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header>
+<nav class="nav" id="mainNav">
+  <a class="nav-brand" href="#inicio">
+    <div class="nav-logomark">
+      <svg viewBox="0 0 20 22"><path d="M10 1 Q15 5 15 10 Q15 17 10 21 Q5 17 5 10 Q5 5 10 1Z"/></svg>
+    </div>
+    <span class="nav-name">Terra</span>
+  </a>
+  <div class="nav-links">
+    <a href="#inicio">Inicio</a>
+    <a href="#productos">Productos</a>
+    <a href="#testimonios">Reseñas</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar modo oscuro/claro">
+      <!-- Sol -->
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <!-- Luna -->
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+    <a class="btn-nav" href="#contacto">Comenzar ritual</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="mob-menu" id="mobMenu">
+  <a href="#inicio" onclick="closeMob()">Inicio</a>
+  <a href="#productos" onclick="closeMob()">Productos</a>
+  <a href="#testimonios" onclick="closeMob()">Reseñas</a>
+  <a href="#contacto" onclick="closeMob()">Contacto</a>
+  <a href="#contacto" class="mob-cta" onclick="closeMob()">Comenzar ritual</a>
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <p class="hero-eyebrow">Skincare consciente — Colección Natural 2025</p>
+  <h1 class="hero-headline">SIENTE.<br>NUTRE.<br>BRILLA.</h1>
+  <div class="hero-sub-row">
+    <span class="hero-badge">Ritual completo en 4 pasos</span>
+    <a class="hero-cta" href="#contacto">
+      <span>Comenzar mi ritual</span>
+      <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+  <div class="hero-showcase">
+    <!-- Decoración izquierda — gradiente SVG como fallback seguro -->
+    <div class="hero-deco left" style="width:clamp(80px,10vw,140px);height:clamp(100px,13vw,175px);border-radius:12px;overflow:hidden;opacity:.55">
+      <img src="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab12?w=300&q=70&auto=format&fit=crop" loading="lazy" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.style.background='linear-gradient(135deg,#C4724A22,#7A9B7622)'">
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-jar">
+        <img src="https://images.unsplash.com/photo-1556228578-dd539282b964?w=400&q=75&auto=format&fit=crop" loading="lazy" alt="Terra 01 — Limpieza" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(160deg,#C4724A,#7A9B76)'">
+      </div>
+      <span class="prod-label">T·01</span>
+    </div>
+    <div class="prod-card">
+      <div class="prod-jar">
+        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&q=75&auto=format&fit=crop" loading="lazy" alt="Terra 02 — Hidratación" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(160deg,#A55A35,#5C7A8A)'">
+      </div>
+      <span class="prod-label">T·02</span>
+    </div>
+    <div class="prod-card">
+      <div class="prod-jar">
+        <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400&q=75&auto=format&fit=crop" loading="lazy" alt="Terra 03 — Sérum" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(160deg,#7A9B76,#C4724A)'">
+      </div>
+      <span class="prod-label">T·03</span>
+    </div>
+    <div class="prod-card">
+      <div class="prod-jar">
+        <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&q=75&auto=format&fit=crop" loading="lazy" alt="Terra 04 — Crema nutritiva" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(160deg,#5C7A8A,#D4A5A0)'">
+      </div>
+      <span class="prod-label">T·04</span>
+    </div>
+
+    <div class="hero-deco right" style="width:clamp(80px,10vw,140px);height:clamp(100px,13vw,175px);border-radius:12px;overflow:hidden;opacity:.55">
+      <img src="https://images.unsplash.com/photo-1471296736399-f4ac2007ee6a?w=300&q=70&auto=format&fit=crop" loading="lazy" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.style.background='linear-gradient(135deg,#7A9B7622,#C4724A22)'">
+    </div>
+  </div>
+</section>
+
+<!-- F1 -->
+<section class="feature" id="productos">
+  <div class="feat-content c-sand rv rv-left">
+    <p class="feat-tag">T·01 — Limpieza profunda</p>
+    <h2 class="feat-title">100% PURO<br>Y NATURAL.</h2>
+    <p class="feat-desc">Formulado con arcilla blanca, aceite de argán y agua de rosas de cosecha directa. Sin parabenos, sin sulfatos, sin compromiso. Tu piel merece solo lo mejor desde el primer toque.</p>
+    <a class="feat-btn" href="#contacto"><span>Comenzar mi ritual</span><svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+  <div class="feat-img-wrap rv rv-right">
+    <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=900&q=80&auto=format&fit=crop" loading="lazy" alt="Limpieza natural" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#C4724A,#E8D5B7)'">
+  </div>
+</section>
+
+<!-- F2 -->
+<section class="feature flip">
+  <div class="feat-img-wrap rv rv-left">
+    <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=900&q=80&auto=format&fit=crop" loading="lazy" alt="Laboratorio natural" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#7A9B76,#BAD1A8)'">
+  </div>
+  <div class="feat-content c-sage rv rv-right">
+    <p class="feat-tag">T·02 — Hidratación activa</p>
+    <h2 class="feat-title">CREADO POR<br>DERMATÓLOGOS.</h2>
+    <p class="feat-desc">Formulaciones respaldadas por estudios clínicos. Ingredientes botánicos de fuentes sostenibles certificadas. Ciencia y naturaleza en perfecta armonía para tu piel más sana.</p>
+    <a class="feat-btn" href="#contacto"><span>Comenzar mi ritual</span><svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip rv rv-up">
+  <div class="strip-item si1">Vegano &amp; Cruelty Free</div>
+  <div class="strip-item si2">Ingredientes Premium</div>
+  <div class="strip-item si3">Envío a domicilio</div>
+</div>
+
+<!-- F3 -->
+<section class="feature">
+  <div class="feat-content c-blush rv rv-left">
+    <p class="feat-tag">T·03 — Sérum regenerador</p>
+    <h2 class="feat-title">PREMIADO<br>POR SU EFICACIA.</h2>
+    <p class="feat-desc">Reconocido en los Premios de Cosmética Natural 2024. El sérum T·03 redujo líneas de expresión en el 94% de las participantes en solo 28 días. Compruébalo en tu piel.</p>
+    <a class="feat-btn" href="#contacto"><span>Comenzar mi ritual</span><svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+  <div class="feat-img-wrap rv rv-right">
+    <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&q=80&auto=format&fit=crop" loading="lazy" alt="Sérum premiado" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#D4A5A0,#C4724A)'">
+  </div>
+</section>
+
+<!-- F4 -->
+<section class="feature flip">
+  <div class="feat-img-wrap rv rv-left">
+    <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=900&q=80&auto=format&fit=crop" loading="lazy" alt="Ritual completo" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#5C7A8A,#A8C5D5)'">
+  </div>
+  <div class="feat-content c-slate rv rv-right">
+    <p class="feat-tag">T·04 — Crema nutritiva</p>
+    <h2 class="feat-title">4 PASOS.<br>1 RITUAL.</h2>
+    <p class="feat-desc">Limpiar, hidratar, tratar y proteger. Un sistema completo para encajar en tu rutina sin esfuerzo. Cuatro productos, una piel transformada desde la primera semana. Tu ritual empieza hoy.</p>
+    <a class="feat-btn" href="#contacto"><span>Comenzar mi ritual</span><svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonials" id="testimonios">
+  <span class="section-eyebrow rv rv-up">Lo que dicen nuestras clientas</span>
+  <h2 class="section-title rv rv-up rv-d1">RESEÑAS</h2>
+  <div class="section-divider rv rv-up rv-d2"></div>
+  <div class="testi-grid">
+    <article class="testi-card rv rv-up rv-d1">
+      <div class="testi-stars"><span></span><span></span><span></span><span></span><span></span></div>
+      <p class="testi-text">"Llevo 3 meses usando el ritual completo y mi piel cambió radicalmente. El sérum T·03 es absolutamente extraordinario. Nunca pensé que algo tan natural pudiera dar resultados tan visibles y rápidos."</p>
+      <span class="testi-author">— Valentina M., Buenos Aires</span>
+    </article>
+    <article class="testi-card rv rv-up rv-d2">
+      <div class="testi-stars"><span></span><span></span><span></span><span></span><span></span></div>
+      <p class="testi-text">"Tengo piel sensible y probé de todo. Terra es lo único que no me irritó. La crema T·04 es una delicia. Mis amigas me preguntan qué hago diferente. Les cuento Terra y ya son clientas."</p>
+      <span class="testi-author">— Florencia R., Rosario</span>
+    </article>
+    <article class="testi-card rv rv-up rv-d3">
+      <div class="testi-stars"><span></span><span></span><span></span><span></span><span></span></div>
+      <p class="testi-text">"Atención impecable y los productos llegaron perfectos. La hidratación T·02 huele increíble y mi piel la absorbe al instante. Vale cada peso. Ya pedí mi segundo kit completo."</p>
+      <span class="testi-author">— Camila B., Córdoba</span>
+    </article>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact-section" id="contacto">
+  <div class="contact-header rv rv-up">
+    <span class="section-eyebrow">Estamos para vos</span>
+    <h2 class="section-title">CONTACTO</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="rv rv-up rv-d1">
+      <p class="contact-col-title">SÍGUENOS</p>
+      <div class="social-links">
+        <a class="social-link" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <a class="social-link" href="https://tiktok.com" target="_blank" rel="noopener">TikTok</a>
+        <a class="social-link" href="https://pinterest.com" target="_blank" rel="noopener">Pinterest</a>
+      </div>
+      <p class="contact-col-title" style="margin-top:2rem">MÁS SOBRE TERRA</p>
+      <div class="nav-links-col">
+        <a href="#inicio">Inicio</a>
+        <a href="#productos">Nuestros productos</a>
+        <a href="#testimonios">Reseñas</a>
+        <a href="#contacto">Envíos y devoluciones</a>
+        <a href="#contacto">Preguntas frecuentes</a>
+      </div>
+    </div>
+    <div class="rv rv-up rv-d2">
+      <p class="contact-col-title">INFORMACIÓN</p>
+      <div class="contact-info-list">
+        <div class="contact-info-item">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div><strong>Email</strong><br><a href="mailto:rominamicaelavera@gmail.com">rominamicaelavera@gmail.com</a></div>
+        </div>
+        <div class="contact-info-item">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 015.11 12a19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <div><strong>WhatsApp / Celular</strong><br><a href="https://wa.me/543764817734" target="_blank" rel="noopener">+54 376 481 7734</a></div>
+        </div>
+        <div class="contact-info-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><strong>Horario de atención</strong><br>Lunes a viernes, 9:00 — 18:00 hs</div>
+        </div>
+        <div class="contact-info-item">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <div><strong>Responsable</strong><br>Romina Vera</div>
+        </div>
+      </div>
+    </div>
+    <div class="rv rv-up rv-d3">
+      <p class="contact-col-title">ENVIANOS UN MENSAJE</p>
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-row">
+          <input class="f-field" type="text" name="nombre" placeholder="Nombre *" required>
+          <input class="f-field" type="text" name="apellido" placeholder="Apellido">
+        </div>
+        <input class="f-field" type="email" name="email" placeholder="Email *" required>
+        <input class="f-field" type="tel" name="telefono" placeholder="Teléfono">
+        <textarea class="f-textarea" name="mensaje" placeholder="Tu mensaje *" required></textarea>
+        <button class="f-submit" type="submit"><span>Enviar mensaje</span></button>
+        <div class="f-msg" id="formMsg"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-bar">
+    <p>©2025 Terra Skincare — Romina Vera — Todos los derechos reservados.</p>
+    <a class="back-top" href="#inicio">
+      Volver arriba
+      <svg viewBox="0 0 16 16"><path d="M8 13V3M3 8l5-5 5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</footer>
+
+<script>
+/* ── TEMA ── */
+const html=document.documentElement;
+const toggle=document.getElementById('themeToggle');
+const savedTheme=localStorage.getItem('terra-theme')||'light';
+html.setAttribute('data-theme',savedTheme);
+toggle.addEventListener('click',()=>{
+  const isDark=html.getAttribute('data-theme')==='dark';
+  const newTheme=isDark?'light':'dark';
+  html.setAttribute('data-theme',newTheme);
+  localStorage.setItem('terra-theme',newTheme);
+});
+
+/* ── NAV scroll ── */
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>50),{passive:true});
+
+/* ── Hamburger ── */
+const btn=document.getElementById('hamburger');
+const mob=document.getElementById('mobMenu');
+btn.addEventListener('click',()=>{
+  const open=mob.classList.toggle('open');
+  btn.classList.toggle('open',open);
+  btn.setAttribute('aria-expanded',String(open));
+  document.body.style.overflow=open?'hidden':'';
+});
+function closeMob(){
+  mob.classList.remove('open');
+  btn.classList.remove('open');
+  btn.setAttribute('aria-expanded','false');
+  document.body.style.overflow='';
+}
+/* Cerrar mob al resize */
+window.addEventListener('resize',()=>{if(window.innerWidth>980)closeMob()},{passive:true});
+
+/* ── Scroll reveal ── */
+const revEls=document.querySelectorAll('.rv');
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}});
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+revEls.forEach(el=>io.observe(el));
+
+/* ── Formulario ── */
+document.getElementById('contactForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const n=this.nombre.value.trim();
+  const em=this.email.value.trim();
+  const ms=this.mensaje.value.trim();
+  const msg=document.getElementById('formMsg');
+  msg.classList.remove('ok','visible');
+  if(!n||!em||!ms){
+    msg.textContent='Por favor completá los campos obligatorios (*).';
+    msg.classList.add('visible');
+    return;
+  }
+  const sub=this.querySelector('.f-submit');
+  sub.disabled=true;
+  sub.querySelector('span').textContent='Enviando...';
+  setTimeout(()=>{
+    msg.textContent='¡Mensaje enviado! Romina te contactará a la brevedad. ¡Gracias!';
+    msg.classList.add('visible','ok');
+    this.reset();
+    sub.disabled=false;
+    sub.querySelector('span').textContent='Enviar mensaje';
+  },1400);
+});
+
+/* ── Nav links active ── */
+const secs=document.querySelectorAll('section[id]');
+const navAs=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(scrollY>=s.offsetTop-130)cur=s.id});
+  navAs.forEach(a=>{
+    const act=a.getAttribute('href')==='#'+cur;
+    a.style.color=act?'var(--clay)':'';
+    a.style.opacity=act?'1':'.55';
+  });
+},{passive:true});
+</script>
+</body>
+</html>
